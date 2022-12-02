@@ -6,6 +6,7 @@ addEventToClearButton();
 addEventToDeleteButton();
 addEventToOperators();
 addEventToEqualButton();
+addEventToMinus();
 
 function displayCurrentOperation() {
   const calculatorDisplay = document.getElementById("currentOperation");
@@ -20,29 +21,35 @@ function displayCurrentNumber() {
 }
 
 function evaluate(expression) {
-  let result;
-  let leftFactor;
-  let rightFactor;
-  let arrayExpression;
+  let result = "";
+  let leftFactor = "";
+  let rightFactor = "";
+  let arrayExpression = "";
+  let firstTerm = expression[0];
+  if (firstTerm === "-") {
+    leftFactor = "-";
+    expression = expression.substring(1, expression.length);
+  }
+
   if(expression.includes("+")) {
     arrayExpression = expression.split("+");
-    leftFactor = arrayExpression[0];
-    rightFactor = arrayExpression[1]
+    leftFactor += arrayExpression[0].trim();
+    rightFactor = arrayExpression[1].trim();
     result = Number(leftFactor) + Number(rightFactor);
   } else if (expression.includes("-")) {
     arrayExpression = expression.split("-");
-    leftFactor = arrayExpression[0];
-    rightFactor = arrayExpression[1]
+    leftFactor += arrayExpression[0].trim();
+    rightFactor = arrayExpression[1].trim();
     result = Number(leftFactor) - Number(rightFactor);
   } else if (expression.includes("x")) {
     arrayExpression = expression.split("x");
-    leftFactor = arrayExpression[0];
-    rightFactor = arrayExpression[1]
+    leftFactor += arrayExpression[0].trim();
+    rightFactor = arrayExpression[1].trim();
     result = Number(leftFactor) * Number(rightFactor);
   } else if (expression.includes("/")) {
     arrayExpression = expression.split("/");
-    leftFactor = arrayExpression[0];
-    rightFactor = arrayExpression[1]
+    leftFactor += arrayExpression[0].trim();
+    rightFactor = arrayExpression[1].trim();
     result = Number(leftFactor) / Number(rightFactor);
   }
   return result;
@@ -69,7 +76,7 @@ function addEventToClearButton() {
 }
 
 function clearOperations() {
-  currentOperation = "0";
+  currentOperation = "None";
   currentNumber = "0";
   displayCurrentOperation();
 }
@@ -103,7 +110,12 @@ function addOperation(event) {
   })
   if (!currentExpressionHaveOperator) {
     const operator = event.target.firstChild.textContent;
-    currentOperation += currentNumber + " " +  operator + " ";
+    if(currentOperation === "None") {
+      currentOperation = currentNumber + " " +  operator + " ";
+    } else {
+      currentOperation += currentNumber + " " +  operator + " ";
+    }
+
   }
   displayCurrentOperation();
 }
@@ -111,6 +123,18 @@ function addOperation(event) {
 function addEventToEqualButton() {
   let equalButton = document.getElementById("equal-button");
   equalButton.addEventListener("click", computeResult);
+}
+
+function addEventToMinus() {
+  let equalButton = document.getElementById("minusOperation");
+  equalButton.addEventListener("click", (event) => {
+    if (currentNumber === "0") {
+      currentNumber = "-"
+      displayCurrentNumber();
+    } else {
+      addOperation(event);
+    }
+  })
 }
 
 function computeResult() {
