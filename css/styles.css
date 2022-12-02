@@ -38,16 +38,22 @@ body {
 
 .row div {
   background-color: #C3C0C4;
+  display: flex;
   font-weight: bold;
   border: black solid 2px;
-  border-radius: 10px;
-  display: flex;
+  border-radius: 15px;
   width: 50px;
   height: 50px;
   justify-content: center;
+  align-items: center;
   flex-grow: 1;
 }
 
-.rod div p {
-  flex-grow: 1;
+.row div:hover {
+  background-color: #F3EFF5;
+  cursor: pointer;
+}
+
+.row div p {
+  margin: 0;
 }
