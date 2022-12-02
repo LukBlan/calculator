@@ -21,35 +21,19 @@ function displayCurrentNumber() {
 }
 
 function evaluate(expression) {
+  let expressionComponents = expression.split(" ");
   let result = "";
-  let leftFactor = "";
-  let rightFactor = "";
-  let arrayExpression = "";
-  let firstTerm = expression[0];
-  if (firstTerm === "-") {
-    leftFactor = "-";
-    expression = expression.substring(1, expression.length);
-  }
+  let leftFactor = expressionComponents[0];
+  let rightFactor = expressionComponents[2];
+  let operator = expressionComponents[1];
 
-  if(expression.includes("+")) {
-    arrayExpression = expression.split("+");
-    leftFactor += arrayExpression[0].trim();
-    rightFactor = arrayExpression[1].trim();
+  if(operator === "+") {
     result = Number(leftFactor) + Number(rightFactor);
-  } else if (expression.includes("-")) {
-    arrayExpression = expression.split("-");
-    leftFactor += arrayExpression[0].trim();
-    rightFactor = arrayExpression[1].trim();
+  } else if (operator === "-") {
     result = Number(leftFactor) - Number(rightFactor);
-  } else if (expression.includes("x")) {
-    arrayExpression = expression.split("x");
-    leftFactor += arrayExpression[0].trim();
-    rightFactor = arrayExpression[1].trim();
+  } else if (operator === "x") {
     result = Number(leftFactor) * Number(rightFactor);
-  } else if (expression.includes("/")) {
-    arrayExpression = expression.split("/");
-    leftFactor += arrayExpression[0].trim();
-    rightFactor = arrayExpression[1].trim();
+  } else if (operator === "/") {
     result = Number(leftFactor) / Number(rightFactor);
   }
   return result;
