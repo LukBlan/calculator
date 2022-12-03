@@ -14,12 +14,15 @@ function addEventToClearButton() {
   });
 }
 
-/*
 function addEventToDeleteButton() {
-  const clearButton = document.getElementById("delete-button");
-  clearButton.addEventListener("click", deleteLastNumber);
+  const deleteButton = document.getElementById("delete-button");
+  deleteButton.addEventListener("click", () => {
+    expression.deleteLastNumber();
+    expression.displayNumber();
+  });
 }
 
+/*
 function addEventToOperators() {
   const operation = document.getElementsByClassName("operation");
   Array.from(operation).forEach(element => element.addEventListener("click", addOperation))

@@ -25,6 +25,15 @@ let expression = {
     this.leftNumber = "0";
     this.operator = null;
     this.rightNumber = "0";
+  },
+
+  deleteLastNumber() {
+    if (this[this.getCurrentNumber()].length === 1) {
+      this[this.getCurrentNumber()] = "0";
+    } else {
+      this[this.getCurrentNumber()] =
+        this[this.getCurrentNumber()].substring(0, this[this.getCurrentNumber()].length -1);
+    }
   }
 }
 
