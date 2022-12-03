@@ -7,6 +7,10 @@ body {
   align-items: center;
 }
 
+p {
+  user-select: none;
+}
+
 #calculator {
   background-color: white;
   border: 2px black solid;
