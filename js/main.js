@@ -1,9 +1,9 @@
 addEventToNumbersButtons();
 addEventToClearButton();
 addEventToDeleteButton();
+addEventToEqualButton();
 
 /*
 addEventToOperators();
-addEventToEqualButton();
 addEventToMinus();
 */

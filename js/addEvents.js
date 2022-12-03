@@ -22,15 +22,18 @@ function addEventToDeleteButton() {
   });
 }
 
+function addEventToEqualButton() {
+  let equalButton = document.getElementById("equal-button");
+  equalButton.addEventListener("click", () => {
+    expression.displayResult();
+    expression.displayNumber();
+  });
+}
+
 /*
 function addEventToOperators() {
   const operation = document.getElementsByClassName("operation");
   Array.from(operation).forEach(element => element.addEventListener("click", addOperation))
-}
-
-function addEventToEqualButton() {
-  let equalButton = document.getElementById("equal-button");
-  equalButton.addEventListener("click", computeResult);
 }
 
 function addEventToMinus() {

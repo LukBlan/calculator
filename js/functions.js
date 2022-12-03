@@ -22,6 +22,8 @@ let expression = {
   },
 
   resetExpression() {
+    const operatorDisplay = document.getElementById("operation-display");
+    operatorDisplay.innerText = "None";
     this.leftNumber = "0";
     this.operator = null;
     this.rightNumber = "0";
@@ -34,91 +36,39 @@ let expression = {
       this[this.getCurrentNumber()] =
         this[this.getCurrentNumber()].substring(0, this[this.getCurrentNumber()].length -1);
     }
-  }
-}
+  },
 
-/*
-function displayCurrentOperation() {
-  const calculatorDisplay = document.getElementById("currentOperation");
-  calculatorDisplay.innerText = currentOperation;
-  currentNumber = "0"
-  displayCurrentNumber()
-}
+  displayOperation() {
+    const operationDisplay = document.getElementById("operation-display");
+    operationDisplay.innerText = this.getCurrentOperation();
+  },
 
-function clearOperations() {
-  currentOperation = "None";
-  currentNumber = "0";
-  displayCurrentOperation();
-}
-
-function deleteLastNumber() {
-  if (currentNumber.length === 1 && currentNumber !== "0") {
-    currentNumber = "0"
-  }
-  if (currentNumber.length > 1) {
-    currentNumber = currentNumber.substring(0, currentNumber.length - 1);
-  }
-  displayCurrentNumber();
-}
-
-function addOperation(event) {
-  const operationsOptions = ["+", "-", "/", "x"];
-  let currentExpressionHaveOperator = false;
-  operationsOptions.forEach(operator => {
-    currentExpressionHaveOperator = currentExpressionHaveOperator || currentOperation.includes(operator);
-  })
-  if (!currentExpressionHaveOperator) {
-    const operator = event.target.firstChild.textContent;
-    if(currentOperation === "None") {
-      currentOperation = currentNumber + " " +  operator + " ";
-    } else {
-      currentOperation += currentNumber + " " +  operator + " ";
+  getCurrentOperation() {
+    let currentOperation = this.leftNumber;
+    if (this.operator !== null) {
+      currentOperation += ` ${this.operator} ${this.leftNumber}`;
     }
-
-  }
-  displayCurrentOperation();
-}
-
-function computeResult() {
-  if(currentNumber === "Error" || currentNumber === "None") {
-    currentNumber = "0";
-    displayCurrentNumber();
-  } else {
-    const calculatorDisplay = document.getElementById("currentOperation");
-    const calculatorNumber = document.getElementById("currentNumber");
-    if (currentOperation === "None") {
-      currentOperation = "";
-    }
-    currentOperation += currentNumber
-    let result =  evaluate(currentOperation);
     currentOperation += " =";
-    calculatorDisplay.innerText = currentOperation;
-    calculatorNumber.innerText = result.toString();
-    currentNumber = result.toString();
-    currentOperation = "";
-  }
-}
+    return currentOperation;
+  },
 
-function evaluate(expression) {
-  let expressionComponents = expression.split(" ");
-  let result = expression;
-  let leftFactor = expressionComponents[0];
-  let rightFactor = expressionComponents[2];
-  let operator = expressionComponents[1];
+  displayResult() {
+    let result = this.computeResult();
+    this.displayOperation();
+    this.leftNumber = result;
+  },
 
-  if(operator === "+") {
-    result = Number(leftFactor) + Number(rightFactor);
-  } else if (operator === "-") {
-    result = Number(leftFactor) - Number(rightFactor);
-  } else if (operator === "x") {
-    result = Number(leftFactor) * Number(rightFactor);
-  } else if (operator === "/") {
-    if (rightFactor === "0") {
-      result = "Error";
-    } else {
-      result = Number(leftFactor) / Number(rightFactor);
+  computeResult() {
+    let result = this.leftNumber;
+    if (this.operator === "+") {
+      result = Number(this.leftNumber) + Number(this.rightNumber);
+    } else if (this.operator === "-") {
+      result = Number(this.leftNumber) - Number(this.rightNumber);
+    } else if (this.operator === "x") {
+      result = Number(this.leftNumber) * Number(this.rightNumber);
+    } else if (this.operator === "/") {
+      result = Number(this.leftNumber) / Number(this.rightNumber);
     }
+    return result;
   }
-  return result;
 }
- */
