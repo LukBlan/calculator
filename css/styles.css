@@ -44,11 +44,6 @@ p {
   font-size: 20px;
 }
 
-#clear-button:hover, #delete-button:hover {
-  background-color: #F3EFF5;
-  color: black;
-}
-
 #operation-display {
   font-size: 14px;
 }
