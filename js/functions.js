@@ -14,7 +14,7 @@ let expression = {
   },
 
   changeNumber(event) {
-    let newNumber = event.target.firstChild.textContent;
+    let newNumber = event.key === undefined? event.target.firstChild.textContent: event.key;
     if (this[this.getCurrentNumber()] === "0" || this.currentNumberIsError()) {
       this[this.getCurrentNumber()] = newNumber;
     } else {
@@ -100,7 +100,7 @@ let expression = {
 
   addOperator(event) {
     if (!this.currenNumberIsAnSpecialCharacter()) {
-      this.operator = event.target.firstChild.textContent;
+      this.operator =  event.key === undefined? event.target.firstChild.textContent: event.key;
       this.displayOperation();
     }
   },

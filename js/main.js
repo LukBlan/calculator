@@ -5,4 +5,4 @@ addEventToEqualButton();
 addEventToMinusButton();
 addEventToOperatorsButtons();
 addEventToDotButton();
-addEventPlayKeySound();
+addEventToKey();
