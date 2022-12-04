@@ -2,6 +2,7 @@ let expression = {
   leftNumber: "0",
   operator: null,
   rightNumber: "0",
+  completed: false,
 
   getCurrentNumber() {
     return this.operator === null? "leftNumber": "rightNumber";
@@ -21,12 +22,16 @@ let expression = {
     }
   },
 
-  resetExpression() {
+  changeToNoneOperatorDisplay() {
     const operatorDisplay = document.getElementById("operation-display");
     operatorDisplay.innerText = "None";
+  },
+
+  resetExpression() {
     this.leftNumber = "0";
     this.operator = null;
     this.rightNumber = "0";
+    this.completed = false;
   },
 
   deleteLastNumber() {
@@ -46,15 +51,21 @@ let expression = {
   getCurrentOperation() {
     let currentOperation = this.leftNumber;
     if (this.operator !== null) {
-      currentOperation += ` ${this.operator} ${this.leftNumber}`;
+      currentOperation += ` ${this.operator}`;
     }
-    currentOperation += " =";
+    if (this.operator !== null && this.completed) {
+      currentOperation += ` ${this.rightNumber}`;
+    }
+    if (this.completed) {
+      currentOperation += ` =`;
+    }
     return currentOperation;
   },
 
   displayResult() {
     let result = this.computeResult();
     this.displayOperation();
+    this.resetExpression();
     this.leftNumber = result;
   },
 
@@ -70,5 +81,20 @@ let expression = {
       result = Number(this.leftNumber) / Number(this.rightNumber);
     }
     return result;
-  }
+  },
+
+  addMinusSign() {
+    if (this[this.getCurrentNumber()] === "0") {
+      this[this.getCurrentNumber()] = "-";
+    } else if (!this.currentNumberIsNotOnlyAMinusSign()) {
+      // Do Nothing
+    } else {
+      this.operator = "-";
+      this.displayOperation();
+    }
+  },
+
+  currentNumberIsNotOnlyAMinusSign() {
+    return this[this.getCurrentNumber()] !== "-";
+  },
 }
