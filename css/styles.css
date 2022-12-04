@@ -13,6 +13,7 @@ p {
 
 #calculator {
   background-color: #333333;
+  max-width: 210px;
   border: 2px black solid;
   border-radius: 15px;
   padding: 15px;
@@ -36,6 +37,7 @@ p {
 
 #display p {
   padding-right: 5px;
+  word-break: break-all;
 }
 
 #clear-button, #delete-button {
@@ -71,8 +73,7 @@ p {
 }
 
 .row div:hover {
-  cursor: pointer
-;
+  cursor: pointer;
 }
 
 .row div:active {

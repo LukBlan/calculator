@@ -135,5 +135,9 @@ let expression = {
   playSound() {
     let audio = new Audio('./sounds/key-sound.mp3');
     audio.play();
+  },
+
+  displayError() {
+    this[this.getCurrentNumber()] = "Error";
   }
 }

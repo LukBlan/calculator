@@ -32,10 +32,22 @@ let functions = {
     }
   },
 
+  "delete": function () {
+    expression.deleteLastNumber();
+    expression.displayNumber();
+    expression.playSound();
+  },
+
+  "space": function () {
+    expression.resetExpression();
+    expression.changeToNoneOperatorDisplay();
+    expression.displayNumber();
+    expression.playSound();
+  },
+
   "other": function () {
   }
 }
-
 
 function addEventToNumbersButtons() {
   const numbersButtons = Array.from(document.getElementsByClassName("number"));
@@ -44,19 +56,12 @@ function addEventToNumbersButtons() {
 
 function addEventToClearButton() {
   const clearButton = document.getElementById("clear-button");
-  clearButton.addEventListener("click", () => {
-    expression.resetExpression();
-    expression.changeToNoneOperatorDisplay();
-    expression.displayNumber();
-  });
+  clearButton.addEventListener("click", functions["space"]);
 }
 
 function addEventToDeleteButton() {
   const deleteButton = document.getElementById("delete-button");
-  deleteButton.addEventListener("click", () => {
-    expression.deleteLastNumber();
-    expression.displayNumber();
-  });
+  deleteButton.addEventListener("click", functions["delete"]);
 }
 
 function addEventToEqualButton() {
@@ -82,10 +87,24 @@ function addEventToDotButton() {
 function addEventToKey() {
   window.addEventListener("keydown", (event) => {
     let keyType = event.key === "-"? "-":
-                    event.key === "Enter"? "=":
-                      event.key === "."? ".":
-                        ["x", "+", "/"].includes(event.key)? "operator":
-                          ["0", "1", "2", "3","4","5", "6", "7", "8", "9"].includes(event.key)? "number": "other"
+                    event.key ===" "? "space":
+                      event.key === "Backspace"? "delete":
+                       event.key === "Enter"? "=":
+                        event.key === "."? ".":
+                          ["*", "+", "/", "x"].includes(event.key)? "operator":
+                            ["0", "1", "2", "3","4","5", "6", "7", "8", "9"].includes(event.key)? "number": "other"
     functions[keyType](event);
   })
+}
+
+function maxSizeDisplayError() {
+  let display = document.getElementById("display");
+  let displayHeight = display.offsetHeight;
+  console.log(displayHeight)
+  if (displayHeight > 95) {
+    expression.resetExpression()
+    expression.changeToNoneOperatorDisplay()
+    expression.displayError()
+    expression.displayNumber()
+  }
 }
