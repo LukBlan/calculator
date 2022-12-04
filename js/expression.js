@@ -101,6 +101,7 @@ let expression = {
   addOperator(event) {
     if (!this.currenNumberIsAnSpecialCharacter()) {
       this.operator =  event.key === undefined? event.target.firstChild.textContent: event.key;
+      this.operator = this.operator === "*"? "x": this.operator;
       this.displayOperation();
     }
   },
@@ -121,7 +122,7 @@ let expression = {
   rightNumberCantBeDivided() {
     let canBeDivided = false;
     this.rightNumber.split("").forEach(character =>{
-      canBeDivided = canBeDivided || (character !== "." && character !== "0");
+      canBeDivided = canBeDivided || !["-","0","."].includes(character);
     })
     return canBeDivided;
   },
