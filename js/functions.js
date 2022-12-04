@@ -78,10 +78,10 @@ let expression = {
     } else if (this.operator === "x") {
       result = Number(this.leftNumber) * Number(this.rightNumber);
     } else if (this.operator === "/") {
-      if (this.rightNumber[this.rightNumber.length -1] === "0") {
-        result = "Error";
-      } else {
+      if (this.rightNumberCantBeDivided()) {
         result = Number(this.leftNumber) / Number(this.rightNumber);
+      } else {
+        result = "Error";
       }
     }
     return result;
@@ -116,6 +116,14 @@ let expression = {
       currentNumberIsNot = currentNumberIsNot || character === this[this.getCurrentNumber()];
     })
     return currentNumberIsNot;
+  },
+
+  rightNumberCantBeDivided() {
+    let canBeDivided = false;
+    this.rightNumber.split("").forEach(character =>{
+      canBeDivided = canBeDivided || (character !== "." && character !== "0");
+    })
+    return canBeDivided;
   },
 
   addDotToNumber(event) {
