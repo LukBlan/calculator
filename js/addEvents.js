@@ -26,12 +26,11 @@ function addEventToDeleteButton() {
 function addEventToEqualButton() {
   let equalButton = document.getElementById("equal-button");
   equalButton.addEventListener("click", () => {
-    if(expression[expression.getCurrentNumber()] !== "-") {
+    if(expression[expression.getCurrentNumber()] !== "-" && !expression.currentNumberIsError()) {
       expression.completed = true;
       expression.displayResult();
       expression.displayNumber();
     }
-
   });
 }
 
@@ -43,9 +42,10 @@ function addEventToMinusButton() {
   })
 }
 
-/*
-function addEventToOperators() {
-  const operation = document.getElementsByClassName("operation");
-  Array.from(operation).forEach(element => element.addEventListener("click", addOperation))
+function addEventToOperatorsButtons() {
+  const operationsButtons = document.getElementsByClassName("operation");
+  Array.from(operationsButtons).forEach(element => element.addEventListener("click", (event) => {
+    expression.addOperator(event);
+    expression.displayNumber();
+  }))
 }
-*/

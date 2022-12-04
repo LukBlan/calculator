@@ -15,7 +15,7 @@ let expression = {
 
   changeNumber(event) {
     let newNumber = event.target.firstChild.textContent;
-    if (this[this.getCurrentNumber()] === "0") {
+    if (this[this.getCurrentNumber()] === "0" || this.currentNumberIsError()) {
       this[this.getCurrentNumber()] = newNumber;
     } else {
       this[this.getCurrentNumber()] += newNumber;
@@ -35,7 +35,7 @@ let expression = {
   },
 
   deleteLastNumber() {
-    if (this[this.getCurrentNumber()].length === 1) {
+    if (this[this.getCurrentNumber()].length === 1 || this.currentNumberIsError()) {
       this[this.getCurrentNumber()] = "0";
     } else {
       this[this.getCurrentNumber()] =
@@ -78,13 +78,17 @@ let expression = {
     } else if (this.operator === "x") {
       result = Number(this.leftNumber) * Number(this.rightNumber);
     } else if (this.operator === "/") {
-      result = Number(this.leftNumber) / Number(this.rightNumber);
+      if (this.rightNumber === "0") {
+        result = "Error";
+      } else {
+        result = Number(this.leftNumber) / Number(this.rightNumber);
+      }
     }
     return result;
   },
 
   addMinusSign() {
-    if (this[this.getCurrentNumber()] === "0") {
+    if (this[this.getCurrentNumber()] === "0" || this.currentNumberIsError()) {
       this[this.getCurrentNumber()] = "-";
     } else if (!this.currentNumberIsNotOnlyAMinusSign()) {
       // Do Nothing
@@ -96,5 +100,16 @@ let expression = {
 
   currentNumberIsNotOnlyAMinusSign() {
     return this[this.getCurrentNumber()] !== "-";
+  },
+
+  addOperator(event) {
+    if (this.currentNumberIsNotOnlyAMinusSign() && !this.currentNumberIsError()) {
+      this.operator = event.target.firstChild.textContent;
+      this.displayOperation();
+    }
+  },
+
+  currentNumberIsError() {
+    return this[this.getCurrentNumber()] === "Error";
   },
 }

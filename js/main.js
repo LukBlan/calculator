@@ -3,7 +3,4 @@ addEventToClearButton();
 addEventToDeleteButton();
 addEventToEqualButton();
 addEventToMinusButton();
-/*
-addEventToOperators();
-
-*/
+addEventToOperatorsButtons();
