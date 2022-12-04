@@ -8,3 +8,5 @@ addEventToDotButton();
 addEventToKey();
 window.addEventListener("keydown", maxSizeDisplayError)
 window.addEventListener("click", maxSizeDisplayError)
+scaleButton()
+removeScaleButton()

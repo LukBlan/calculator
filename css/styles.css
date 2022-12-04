@@ -76,8 +76,9 @@ p {
   cursor: pointer;
 }
 
-.row div:active {
-  transform: scale(1.1);
+.row div:active, .active {
+  transition: 0.1s;
+  transform: scale(0.85);
 }
 
 .row div p {

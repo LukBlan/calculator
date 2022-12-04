@@ -108,3 +108,52 @@ function maxSizeDisplayError() {
     expression.displayNumber()
   }
 }
+
+function getElementByKeyPressed(event) {
+  let keyMapped = mappingKeys[event.key];
+  let element = null;
+  if (keyMapped !== undefined) {
+    const keyButtons = document.getElementsByClassName("key");
+    element = Array.from(keyButtons).filter(keyButton => keyButton.textContent === keyMapped)[0];
+  }
+  return element
+}
+
+
+function scaleButton() {
+  window.addEventListener("keydown", (event) => {
+    let element = getElementByKeyPressed(event);
+    if(element !== null) {
+      element.parentElement.classList.add("active");
+    }
+  })
+}
+
+function removeScaleButton() {
+  const keyButtons = document.getElementsByClassName("key");
+  Array.from(keyButtons).forEach(button => button.parentElement.addEventListener("transitionend", () => {
+    button.parentElement.classList.remove("active");
+  } ))
+}
+
+let mappingKeys =  {
+  "0": "0",
+  "1": "1",
+  "2": "2",
+  "3": "3",
+  "4": "4",
+  "5": "5",
+  "6": "6",
+  "7": "7",
+  "8": "8",
+  "9": "9",
+  "-": "-",
+  "x": "x",
+  "*": "x",
+  "+": "+",
+  "Enter": "=",
+  ".": ".",
+  "Backspace": "Delete",
+  " ": "Clear",
+  "/": "/",
+}
