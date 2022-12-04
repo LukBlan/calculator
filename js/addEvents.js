@@ -57,3 +57,10 @@ function addEventToDotButton() {
     expression.displayNumber();
   })
 }
+
+function addEventPlayKeySound() {
+  const allRow = Array.from(document.querySelectorAll(".row div"));
+  allRow.forEach(element => element.addEventListener("click", () => {
+    expression.playSound();
+  }))
+}

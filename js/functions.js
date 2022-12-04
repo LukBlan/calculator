@@ -98,10 +98,6 @@ let expression = {
     }
   },
 
-  currentNumberIsNotOnlyAMinusSign() {
-    return this[this.getCurrentNumber()] !== "-";
-  },
-
   addOperator(event) {
     if (!this.currenNumberIsAnSpecialCharacter()) {
       this.operator = event.target.firstChild.textContent;
@@ -126,5 +122,10 @@ let expression = {
     if(!this[this.getCurrentNumber()].includes(".")) {
       this.changeNumber(event);
     }
+  },
+
+  playSound() {
+    let audio = new Audio('./sounds/key-sound.mp3');
+    audio.play();
   }
 }
