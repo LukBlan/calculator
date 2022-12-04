@@ -26,7 +26,7 @@ function addEventToDeleteButton() {
 function addEventToEqualButton() {
   let equalButton = document.getElementById("equal-button");
   equalButton.addEventListener("click", () => {
-    if(expression[expression.getCurrentNumber()] !== "-" && !expression.currentNumberIsError()) {
+    if(!expression.currenNumberIsAnSpecialCharacter()) {
       expression.completed = true;
       expression.displayResult();
       expression.displayNumber();
@@ -48,4 +48,12 @@ function addEventToOperatorsButtons() {
     expression.addOperator(event);
     expression.displayNumber();
   }))
+}
+
+function addEventToDotButton() {
+  const dotButton = document.getElementById("dot");
+  dotButton.addEventListener("click", (event) => {
+    expression.addDotToNumber(event);
+    expression.displayNumber();
+  })
 }

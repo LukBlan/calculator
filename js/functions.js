@@ -78,7 +78,7 @@ let expression = {
     } else if (this.operator === "x") {
       result = Number(this.leftNumber) * Number(this.rightNumber);
     } else if (this.operator === "/") {
-      if (this.rightNumber === "0") {
+      if (this.rightNumber[this.rightNumber.length -1] === "0") {
         result = "Error";
       } else {
         result = Number(this.leftNumber) / Number(this.rightNumber);
@@ -90,7 +90,7 @@ let expression = {
   addMinusSign() {
     if (this[this.getCurrentNumber()] === "0" || this.currentNumberIsError()) {
       this[this.getCurrentNumber()] = "-";
-    } else if (!this.currentNumberIsNotOnlyAMinusSign()) {
+    } else if (this.currenNumberIsAnSpecialCharacter()) {
       // Do Nothing
     } else {
       this.operator = "-";
@@ -103,7 +103,7 @@ let expression = {
   },
 
   addOperator(event) {
-    if (this.currentNumberIsNotOnlyAMinusSign() && !this.currentNumberIsError()) {
+    if (!this.currenNumberIsAnSpecialCharacter()) {
       this.operator = event.target.firstChild.textContent;
       this.displayOperation();
     }
@@ -112,4 +112,19 @@ let expression = {
   currentNumberIsError() {
     return this[this.getCurrentNumber()] === "Error";
   },
+
+  currenNumberIsAnSpecialCharacter() {
+    let specialCharacters = ["Error", ".", "-"];
+    let currentNumberIsNot = false;
+    specialCharacters.forEach(character => {
+      currentNumberIsNot = currentNumberIsNot || character === this[this.getCurrentNumber()];
+    })
+    return currentNumberIsNot;
+  },
+
+  addDotToNumber(event) {
+    if(!this[this.getCurrentNumber()].includes(".")) {
+      this.changeNumber(event);
+    }
+  }
 }

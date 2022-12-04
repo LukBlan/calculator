@@ -4,3 +4,4 @@ addEventToDeleteButton();
 addEventToEqualButton();
 addEventToMinusButton();
 addEventToOperatorsButtons();
+addEventToDotButton();
