@@ -113,7 +113,7 @@ function getElementByKeyPressed(event) {
   let keyMapped = mappingKeys[event.key];
   let element = null;
   if (keyMapped !== undefined) {
-    const keyButtons = document.getElementsByClassName("key");
+    const keyButtons = document.querySelectorAll(".row > div > p");
     element = Array.from(keyButtons).filter(keyButton => keyButton.textContent === keyMapped)[0];
   }
   return element
@@ -130,7 +130,7 @@ function scaleButton() {
 }
 
 function removeScaleButton() {
-  const keyButtons = document.getElementsByClassName("key");
+  const keyButtons = document.querySelectorAll(".row > div > p");
   Array.from(keyButtons).forEach(button => button.parentElement.addEventListener("transitionend", () => {
     button.parentElement.classList.remove("active");
   } ))
