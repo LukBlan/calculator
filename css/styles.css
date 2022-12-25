@@ -70,14 +70,13 @@ p {
   justify-content: center;
   align-items: center;
   flex-grow: 1;
-}
-
-.row div:hover {
+  box-shadow: 2px 2px 1px black;
   cursor: pointer;
 }
 
-.row div:active, .active {
+.row div:active, div .active {
   transition: 0.1s;
+  box-shadow: 0 0 0 black;
   transform: scale(0.85);
 }
 
