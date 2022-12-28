@@ -112,7 +112,7 @@ function getElementByKeyPressed(event) {
   let keyMapped = mappingKeys[event.key];
   let element = null;
   if (keyMapped !== undefined) {
-    const keyButtons = document.querySelectorAll(".row > div > p");
+    const keyButtons = document.querySelectorAll("button");
     element = Array.from(keyButtons).filter(keyButton => keyButton.textContent === keyMapped)[0];
   }
   return element
@@ -123,15 +123,15 @@ function scaleButton() {
   window.addEventListener("keydown", (event) => {
     let element = getElementByKeyPressed(event);
     if(element !== null) {
-      element.parentElement.classList.add("active");
+      element.classList.add("active");
     }
   })
 }
 
 function removeScaleButton() {
-  const keyButtons = document.querySelectorAll(".row > div > p");
-  Array.from(keyButtons).forEach(button => button.parentElement.addEventListener("transitionend", () => {
-    button.parentElement.classList.remove("active");
+  const keyButtons = document.querySelectorAll("button");
+  Array.from(keyButtons).forEach(button => button.addEventListener("transitionend", () => {
+    button.classList.remove("active");
   } ))
 }
 
