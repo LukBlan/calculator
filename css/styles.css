@@ -1,14 +1,11 @@
 body {
+  user-select: none;
   background-color: antiquewhite;
   min-height: 100vh;
   margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-p {
-  user-select: none;
 }
 
 #calculator {
@@ -23,7 +20,6 @@ p {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  flex-grow: 0;
 }
 
 #display {
@@ -42,6 +38,7 @@ p {
 }
 
 #clear-button, #delete-button {
+  flex-grow: 1;
   background-color: black;
   color: white;
   font-size: 20px;
@@ -61,26 +58,19 @@ p {
   gap: 10px;
 }
 
-.row div {
+button {
   background-color: #706f6f;
   color: white;
-  display: flex;
+  border: none;
   font-size: 30px;
   width: 45px;
   height: 32px;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
   box-shadow: 2px 2px 1px black;
   cursor: pointer;
 }
 
-.row div:active, div .active {
+button:active, button .active {
   transition: 0.1s;
   box-shadow: 0 0 0 black;
   transform: scale(0.85);
-}
-
-.row div p {
-  margin: 0;
 }

@@ -100,7 +100,6 @@ function addEventToKey() {
 function maxSizeDisplayError() {
   let display = document.getElementById("display");
   let displayHeight = display.offsetHeight;
-  console.log(displayHeight)
   if (displayHeight > 95) {
     expression.resetExpression()
     expression.changeToNoneOperatorDisplay()
