@@ -135,6 +135,11 @@ function removeScaleButton() {
   } ))
 }
 
+function addEventToRemoveFocusOnButtons() {
+  const buttons = document.querySelectorAll("button");
+  buttons.forEach(button => button.addEventListener("focus", button.blur));
+}
+
 let mappingKeys =  {
   "0": "0",
   "1": "1",
