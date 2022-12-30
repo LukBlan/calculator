@@ -5,12 +5,6 @@ let functions = {
     expression.playSound();
   },
 
-  "operator": function (event) {
-    expression.addOperator(event);
-    expression.displayNumber();
-    expression.playSound();
-  },
-
   "number": function (event) {
     expression.changeNumber(event);
     expression.displayNumber();
@@ -46,8 +40,17 @@ let functions = {
   },
 
   "other": function () {
-  }
+  },
 }
+
+functions["operator"] = functions["+"] = functions["/"] = functions["x"] = function (event) {
+  expression.addOperator(event);
+  expression.displayNumber();
+  expression.playSound();
+}
+
+
+
 
 function addEventToNumbersButtons() {
   const numbersButtons = Array.from(document.getElementsByClassName("number"));
@@ -84,15 +87,10 @@ function addEventToDotButton() {
   dotButton.addEventListener("click", functions["."]);
 }
 
-function addEventToKey() {
+function addEventToKeyPressed() {
   window.addEventListener("keydown", (event) => {
-    let keyType = event.key === "-"? "-":
-                    event.key ===" "? "space":
-                      event.key === "Backspace"? "delete":
-                       event.key === "Enter"? "=":
-                        event.key === "."? ".":
-                          ["*", "+", "/", "x"].includes(event.key)? "operator":
-                            ["0", "1", "2", "3","4","5", "6", "7", "8", "9"].includes(event.key)? "number": "other"
+    let mappedKey = mappingKeys[event.key];
+    let keyType = (mappedKey !== undefined)? mappedKey : "other";
     functions[keyType](event);
   })
 }
@@ -113,11 +111,11 @@ function getElementByKeyPressed(event) {
   let element = null;
   if (keyMapped !== undefined) {
     const keyButtons = document.querySelectorAll("button");
-    element = Array.from(keyButtons).filter(keyButton => keyButton.textContent === keyMapped)[0];
+    const keyPressed =  (keyMapped === "number")? event.key : keyMapped;
+    element = Array.from(keyButtons).filter(keyButton => keyButton.textContent === keyPressed)[0];
   }
   return element
 }
-
 
 function scaleButton() {
   window.addEventListener("keydown", (event) => {
@@ -141,23 +139,23 @@ function addEventToRemoveFocusOnButtons() {
 }
 
 let mappingKeys =  {
-  "0": "0",
-  "1": "1",
-  "2": "2",
-  "3": "3",
-  "4": "4",
-  "5": "5",
-  "6": "6",
-  "7": "7",
-  "8": "8",
-  "9": "9",
+  "0": "number",
+  "1": "number",
+  "2": "number",
+  "3": "number",
+  "4": "number",
+  "5": "number",
+  "6": "number",
+  "7": "number",
+  "8": "number",
+  "9": "number",
   "-": "-",
   "x": "x",
   "*": "x",
   "+": "+",
   "Enter": "=",
   ".": ".",
-  "Backspace": "Delete",
-  " ": "Clear",
+  "Backspace": "delete",
+  " ": "space",
   "/": "/",
 }

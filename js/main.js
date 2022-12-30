@@ -5,7 +5,7 @@ addEventToEqualButton();
 addEventToMinusButton();
 addEventToOperatorsButtons();
 addEventToDotButton();
-addEventToKey();
+addEventToKeyPressed();
 window.addEventListener("keydown", maxSizeDisplayError);
 window.addEventListener("click", maxSizeDisplayError);
 scaleButton();
