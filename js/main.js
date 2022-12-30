@@ -11,3 +11,4 @@ window.addEventListener("click", maxSizeDisplayError);
 scaleButton();
 removeScaleButton();
 addEventToRemoveFocusOnButtons();
+

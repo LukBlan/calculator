@@ -26,13 +26,13 @@ let functions = {
     }
   },
 
-  "delete": function () {
+  "Delete": function () {
     expression.deleteLastNumber();
     expression.displayNumber();
     expression.playSound();
   },
 
-  "space": function () {
+  "Clear": function () {
     expression.resetExpression();
     expression.changeToNoneOperatorDisplay();
     expression.displayNumber();
@@ -59,12 +59,12 @@ function addEventToNumbersButtons() {
 
 function addEventToClearButton() {
   const clearButton = document.getElementById("clear-button");
-  clearButton.addEventListener("click", functions["space"]);
+  clearButton.addEventListener("click", functions["Clear"]);
 }
 
 function addEventToDeleteButton() {
   const deleteButton = document.getElementById("delete-button");
-  deleteButton.addEventListener("click", functions["delete"]);
+  deleteButton.addEventListener("click", functions["Delete"]);
 }
 
 function addEventToEqualButton() {
@@ -133,9 +133,13 @@ function removeScaleButton() {
   } ))
 }
 
+
 function addEventToRemoveFocusOnButtons() {
   const buttons = document.querySelectorAll("button");
-  buttons.forEach(button => button.addEventListener("focus", button.blur));
+  buttons.forEach(button => button.addEventListener("focus", () => {
+    button.classList.add("active");
+    button.blur()
+  }));
 }
 
 let mappingKeys =  {
@@ -155,7 +159,7 @@ let mappingKeys =  {
   "+": "+",
   "Enter": "=",
   ".": ".",
-  "Backspace": "delete",
-  " ": "space",
+  "Backspace": "Delete",
+  " ": "Clear",
   "/": "/",
 }
