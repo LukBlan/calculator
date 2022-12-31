@@ -9,6 +9,7 @@ addEventToKeyPressed();
 window.addEventListener("keyup", maxSizeDisplayError);
 window.addEventListener("click", maxSizeDisplayError);
 addEffectToButtonDown("keydown");
+addEffectToButtonDown("mousedown");
 addEffectToButtonUp("keyup");
+addEffectToButtonUp("mouseup");
 addEventToRemoveFocusOnButtons();
-

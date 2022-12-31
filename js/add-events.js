@@ -44,37 +44,37 @@ functions["operator"] = functions["+"] = functions["/"] = functions["x"] = funct
 
 function addEventToNumbersButtons() {
   const numbersButtons = Array.from(document.getElementsByClassName("number"));
-  numbersButtons.forEach(element => element.addEventListener("click", functions["number"]));
+  numbersButtons.forEach(element => element.addEventListener("mousedown", functions["number"]));
 }
 
 function addEventToClearButton() {
   const clearButton = document.getElementById("clear-button");
-  clearButton.addEventListener("click", functions["Clear"]);
+  clearButton.addEventListener("mousedown", functions["Clear"]);
 }
 
 function addEventToDeleteButton() {
   const deleteButton = document.getElementById("delete-button");
-  deleteButton.addEventListener("click", functions["Delete"]);
+  deleteButton.addEventListener("mousedown", functions["Delete"]);
 }
 
 function addEventToEqualButton() {
   let equalButton = document.getElementById("equal-button");
-  equalButton.addEventListener("click", functions["="]);
+  equalButton.addEventListener("mousedown", functions["="]);
 }
 
 function addEventToMinusButton() {
   let minusButton = document.getElementById("minusOperation");
-  minusButton.addEventListener("click", functions["-"]);
+  minusButton.addEventListener("mousedown", functions["-"]);
 }
 
 function addEventToOperatorsButtons() {
   const operationsButtons = document.getElementsByClassName("operation");
-  Array.from(operationsButtons).forEach(element => element.addEventListener("click", functions["operator"]));
+  Array.from(operationsButtons).forEach(element => element.addEventListener("mousedown", functions["operator"]));
 }
 
 function addEventToDotButton() {
   const dotButton = document.getElementById("dot");
-  dotButton.addEventListener("click", functions["."]);
+  dotButton.addEventListener("mousedown", functions["."]);
 }
 
 function addEventToKeyPressed() {
@@ -97,11 +97,12 @@ function maxSizeDisplayError() {
 }
 
 function getElementByKeyPressed(event) {
-  let keyMapped = mappingKeys[event.key];
+  const key = (event.type === "mousedown" || event.type === "mouseup")? event.target.textContent: event.key;
+  let keyMapped = mappingKeys[key];
   let element = null;
   if (keyMapped !== undefined) {
     const keyButtons = document.querySelectorAll("button");
-    const keyPressed =  (keyMapped === "number")? event.key : keyMapped;
+    const keyPressed =  (keyMapped === "number")? key : keyMapped;
     element = Array.from(keyButtons).filter(keyButton => keyButton.textContent === keyPressed)[0];
   }
   return element
@@ -122,7 +123,6 @@ function addEffectToButtonUp(eventType) {
     if(element !== null) {
       expression.playSound();
       element.classList.remove("active");
-      element.blur()
     }
   })
 }
@@ -150,6 +150,8 @@ let mappingKeys =  {
   "Enter": "=",
   ".": ".",
   "Backspace": "Delete",
+  "Delete": "Delete",
   " ": "Clear",
+  "Clear": "Clear",
   "/": "/",
 }
