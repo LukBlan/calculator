@@ -44,37 +44,37 @@ functions["operator"] = functions["+"] = functions["/"] = functions["x"] = funct
 
 function addEventToNumbersButtons() {
   const numbersButtons = Array.from(document.getElementsByClassName("number"));
-  numbersButtons.forEach(element => element.addEventListener("mousedown", functions["number"]));
+  numbersButtons.forEach(element => element.addEventListener("mouseup", functions["number"]));
 }
 
 function addEventToClearButton() {
   const clearButton = document.getElementById("clear-button");
-  clearButton.addEventListener("mousedown", functions["Clear"]);
+  clearButton.addEventListener("mouseup", functions["Clear"]);
 }
 
 function addEventToDeleteButton() {
   const deleteButton = document.getElementById("delete-button");
-  deleteButton.addEventListener("mousedown", functions["Delete"]);
+  deleteButton.addEventListener("mouseup", functions["Delete"]);
 }
 
 function addEventToEqualButton() {
   let equalButton = document.getElementById("equal-button");
-  equalButton.addEventListener("mousedown", functions["="]);
+  equalButton.addEventListener("mouseup", functions["="]);
 }
 
 function addEventToMinusButton() {
   let minusButton = document.getElementById("minusOperation");
-  minusButton.addEventListener("mousedown", functions["-"]);
+  minusButton.addEventListener("mouseup", functions["-"]);
 }
 
 function addEventToOperatorsButtons() {
   const operationsButtons = document.getElementsByClassName("operation");
-  Array.from(operationsButtons).forEach(element => element.addEventListener("mousedown", functions["operator"]));
+  Array.from(operationsButtons).forEach(element => element.addEventListener("mouseup", functions["operator"]));
 }
 
 function addEventToDotButton() {
   const dotButton = document.getElementById("dot");
-  dotButton.addEventListener("mousedown", functions["."]);
+  dotButton.addEventListener("mouseup", functions["."]);
 }
 
 function addEventToKeyPressed() {
@@ -118,8 +118,8 @@ function addEffectToButtonDown(eventType) {
 }
 
 function addEffectToButtonUp(eventType) {
-  window.addEventListener(eventType, (event) => {
-    let element = getElementByKeyPressed(event);
+  window.addEventListener(eventType, () => {
+    let element = document.querySelector(".active");
     if(element !== null) {
       expression.playSound();
       element.classList.remove("active");
