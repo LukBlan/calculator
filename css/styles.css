@@ -67,6 +67,7 @@ button {
   height: 32px;
   box-shadow: 0 0 8px black;
   cursor: pointer;
+  tab-index: -1;
 }
 
 .active {

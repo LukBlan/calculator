@@ -2,19 +2,16 @@ let functions = {
   "-": function () {
     expression.addMinusSign();
     expression.displayNumber();
-    expression.playSound();
   },
 
   "number": function (event) {
     expression.changeNumber(event);
     expression.displayNumber();
-    expression.playSound();
   },
 
   ".": function (event) {
     expression.addDotToNumber(event);
     expression.displayNumber();
-    expression.playSound();
   },
 
   "=": function () {
@@ -22,21 +19,18 @@ let functions = {
       expression.completed = true;
       expression.displayResult();
       expression.displayNumber();
-      expression.playSound();
     }
   },
 
   "Delete": function () {
     expression.deleteLastNumber();
     expression.displayNumber();
-    expression.playSound();
   },
 
   "Clear": function () {
     expression.resetExpression();
     expression.changeToNoneOperatorDisplay();
     expression.displayNumber();
-    expression.playSound();
   },
 
   "other": function () {
@@ -46,11 +40,7 @@ let functions = {
 functions["operator"] = functions["+"] = functions["/"] = functions["x"] = function (event) {
   expression.addOperator(event);
   expression.displayNumber();
-  expression.playSound();
 }
-
-
-
 
 function addEventToNumbersButtons() {
   const numbersButtons = Array.from(document.getElementsByClassName("number"));
@@ -88,7 +78,7 @@ function addEventToDotButton() {
 }
 
 function addEventToKeyPressed() {
-  window.addEventListener("keydown", (event) => {
+  window.addEventListener("keyup", (event) => {
     let mappedKey = mappingKeys[event.key];
     let keyType = (mappedKey !== undefined)? mappedKey : "other";
     functions[keyType](event);
@@ -117,8 +107,8 @@ function getElementByKeyPressed(event) {
   return element
 }
 
-function scaleButton() {
-  window.addEventListener("keydown", (event) => {
+function addEffectToButtonDown(eventType) {
+  window.addEventListener(eventType, (event) => {
     let element = getElementByKeyPressed(event);
     if(element !== null) {
       element.classList.add("active");
@@ -126,20 +116,20 @@ function scaleButton() {
   })
 }
 
-function removeScaleButton() {
-  const keyButtons = document.querySelectorAll("button");
-  Array.from(keyButtons).forEach(button => button.addEventListener("transitionend", () => {
-    button.classList.remove("active");
-  } ))
+function addEffectToButtonUp(eventType) {
+  window.addEventListener(eventType, (event) => {
+    let element = getElementByKeyPressed(event);
+    if(element !== null) {
+      expression.playSound();
+      element.classList.remove("active");
+      element.blur()
+    }
+  })
 }
-
 
 function addEventToRemoveFocusOnButtons() {
   const buttons = document.querySelectorAll("button");
-  buttons.forEach(button => button.addEventListener("focus", () => {
-    button.classList.add("active");
-    button.blur()
-  }));
+  buttons.forEach(button => button.addEventListener("focus", button.blur))
 }
 
 let mappingKeys =  {

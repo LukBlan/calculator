@@ -6,9 +6,9 @@ addEventToMinusButton();
 addEventToOperatorsButtons();
 addEventToDotButton();
 addEventToKeyPressed();
-window.addEventListener("keydown", maxSizeDisplayError);
+window.addEventListener("keyup", maxSizeDisplayError);
 window.addEventListener("click", maxSizeDisplayError);
-scaleButton();
-removeScaleButton();
+addEffectToButtonDown("keydown");
+addEffectToButtonUp("keyup");
 addEventToRemoveFocusOnButtons();
 
