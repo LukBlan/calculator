@@ -148,6 +148,7 @@ let mappingKeys =  {
   "*": "x",
   "+": "+",
   "Enter": "=",
+  "=": "=",
   ".": ".",
   "Backspace": "Delete",
   "Delete": "Delete",
