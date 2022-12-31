@@ -44,37 +44,37 @@ functions["operator"] = functions["+"] = functions["/"] = functions["x"] = funct
 
 function addEventToNumbersButtons() {
   const numbersButtons = Array.from(document.getElementsByClassName("number"));
-  numbersButtons.forEach(element => element.addEventListener("mouseup", functions["number"]));
+  numbersButtons.forEach(element => element.addEventListener("click", functions["number"]));
 }
 
 function addEventToClearButton() {
   const clearButton = document.getElementById("clear-button");
-  clearButton.addEventListener("mouseup", functions["Clear"]);
+  clearButton.addEventListener("click", functions["Clear"]);
 }
 
 function addEventToDeleteButton() {
   const deleteButton = document.getElementById("delete-button");
-  deleteButton.addEventListener("mouseup", functions["Delete"]);
+  deleteButton.addEventListener("click", functions["Delete"]);
 }
 
 function addEventToEqualButton() {
   let equalButton = document.getElementById("equal-button");
-  equalButton.addEventListener("mouseup", functions["="]);
+  equalButton.addEventListener("click", functions["="]);
 }
 
 function addEventToMinusButton() {
   let minusButton = document.getElementById("minusOperation");
-  minusButton.addEventListener("mouseup", functions["-"]);
+  minusButton.addEventListener("click", functions["-"]);
 }
 
 function addEventToOperatorsButtons() {
   const operationsButtons = document.getElementsByClassName("operation");
-  Array.from(operationsButtons).forEach(element => element.addEventListener("mouseup", functions["operator"]));
+  Array.from(operationsButtons).forEach(element => element.addEventListener("click", functions["operator"]));
 }
 
 function addEventToDotButton() {
   const dotButton = document.getElementById("dot");
-  dotButton.addEventListener("mouseup", functions["."]);
+  dotButton.addEventListener("click", functions["."]);
 }
 
 function addEventToKeyPressed() {
@@ -97,7 +97,7 @@ function maxSizeDisplayError() {
 }
 
 function getElementByKeyPressed(event) {
-  const key = (event.type === "mousedown" || event.type === "mouseup")? event.target.textContent: event.key;
+  const key = (event.type === "click")? event.target.textContent: event.key;
   let keyMapped = mappingKeys[key];
   let element = null;
   if (keyMapped !== undefined) {
@@ -117,8 +117,8 @@ function addEffectToButtonDown(eventType) {
   })
 }
 
-function addEffectToButtonUp(eventType) {
-  window.addEventListener(eventType, () => {
+function addEffectToButtonUp() {
+  window.addEventListener("transitionend", () => {
     let element = document.querySelector(".active");
     if(element !== null) {
       expression.playSound();
