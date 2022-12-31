@@ -38,8 +38,9 @@ body {
 }
 
 #clear-button, #delete-button {
-  flex-grow: 1;
   background-color: black;
+  flex-grow: 1;
+  border-color: black;
   color: white;
   font-size: 20px;
 }
