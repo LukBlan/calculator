@@ -10,7 +10,7 @@ body {
 
 #calculator {
   background-color: #333333;
-  box-shadow: 2px 6px 10px black;
+  box-shadow: 3px 4px 11px 3px black;
   max-width: 210px;
   border: 2px black solid;
   border-radius: 25px;
@@ -67,10 +67,11 @@ button {
   height: 32px;
   box-shadow: 0 0 8px black;
   cursor: pointer;
-  tab-index: -1;
+  line-height: 32px;
 }
 
 .active {
+  border: 1px solid black;
   transition: 0.1s;
   box-shadow: 0 0 0 black;
   transform: scale(0.85);
