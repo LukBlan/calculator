@@ -17,6 +17,7 @@ let functions = {
   "=": function () {
     if(!expression.currenNumberIsAnSpecialCharacter()) {
       expression.completed = true;
+      expression.chainedOperator = null;
       expression.displayResult();
       expression.displayNumber();
     }

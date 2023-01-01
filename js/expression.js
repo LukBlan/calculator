@@ -1,6 +1,7 @@
 let expression = {
   leftNumber: "0",
   operator: null,
+  chainedOperator: null,
   rightNumber: "0",
   completed: false,
 
@@ -32,6 +33,7 @@ let expression = {
     this.operator = null;
     this.rightNumber = "0";
     this.completed = false;
+    this.chainedOperator = null;
   },
 
   deleteLastNumber() {
@@ -52,6 +54,9 @@ let expression = {
     let currentOperation = this.leftNumber;
     if (this.operator !== null) {
       currentOperation += ` ${this.operator}`;
+    }
+    if (this.chainedOperator !== null) {
+      currentOperation += ` ${this.chainedOperator}`;
     }
     if (this.operator !== null && this.completed) {
       currentOperation += ` ${this.rightNumber}`;
@@ -100,10 +105,28 @@ let expression = {
 
   addOperator(event) {
     if (!this.currenNumberIsAnSpecialCharacter()) {
-      this.operator =  event.key === undefined? event.target.firstChild.textContent: event.key;
-      this.operator = this.operator === "*"? "x": this.operator;
-      this.displayOperation();
+      if (this.operator !== null) {
+        this.displayResult();
+        this.chainOperation(event);
+        this.displayOperation();
+        this.resetChainedOperation();
+        expression.displayErrorInOperation();
+      } else if (!this.currenNumberIsAnSpecialCharacter()) {
+        this.operator =  event.key === undefined? event.target.firstChild.textContent: event.key;
+        this.operator = this.operator === "*"? "x": this.operator;
+        this.displayOperation();
+      }
     }
+  },
+
+  chainOperation(event) {
+    this.chainedOperator = (event.type === "click")? event.target.textContent: event.key;
+    this.completed = false;
+  },
+
+  resetChainedOperation() {
+    this.operator = this.chainedOperator;
+    this.chainedOperator = null;
   },
 
   currentNumberIsError() {
@@ -140,5 +163,13 @@ let expression = {
 
   displayError() {
     this[this.getCurrentNumber()] = "Error";
+  },
+
+  displayErrorInOperation() {
+    if (this.leftNumber === "Error" || this.rightNumber === "Error") {
+      this.resetExpression();
+      this.changeToNoneOperatorDisplay();
+      this.displayError();
+    }
   }
 }
