@@ -107,10 +107,7 @@ let expression = {
     if (!this.currenNumberIsAnSpecialCharacter()) {
       if (this.operator !== null) {
         this.displayResult();
-        this.chainOperation(event);
-        this.displayOperation();
-        this.resetChainedOperation();
-        expression.displayErrorInOperation();
+        this.chain(event);
       } else if (!this.currenNumberIsAnSpecialCharacter()) {
         this.operator =  event.key === undefined? event.target.firstChild.textContent: event.key;
         this.operator = this.operator === "*"? "x": this.operator;
@@ -119,8 +116,15 @@ let expression = {
     }
   },
 
+  chain(event) {
+    this.chainOperation(event);
+    this.displayOperation();
+    this.resetChainedOperation();
+    expression.displayErrorInOperation();
+  },
+
   chainOperation(event) {
-    this.chainedOperator = (event.type === "click")? event.target.textContent: event.key;
+    this.chainedOperator = (event.type === "click")? event.target.textContent: mappingKeys[event.key];
     this.completed = false;
   },
 
