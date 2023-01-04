@@ -1,6 +1,6 @@
 let functions = {
-  "-": function () {
-    expression.addMinusSign();
+  "-": function (event) {
+    expression.addMinusSign(event);
     expression.displayNumber();
   },
 

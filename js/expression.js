@@ -92,8 +92,11 @@ let expression = {
     return result;
   },
 
-  addMinusSign() {
-    if (this[this.getCurrentNumber()] === "0" || this.currentNumberIsError()) {
+  addMinusSign(event) {
+    if(expression.rightNumber !== "0") {
+      this.displayResult();
+      this.chain(event);
+    } else if (this[this.getCurrentNumber()] === "0" || this.currentNumberIsError()) {
       this[this.getCurrentNumber()] = "-";
     } else if (this.currenNumberIsAnSpecialCharacter()) {
       // Do Nothing
@@ -109,8 +112,7 @@ let expression = {
         this.displayResult();
         this.chain(event);
       } else if (!this.currenNumberIsAnSpecialCharacter()) {
-        this.operator =  event.key === undefined? event.target.firstChild.textContent: event.key;
-        this.operator = this.operator === "*"? "x": this.operator;
+        this.operator =  event.key === undefined? event.target.firstChild.textContent: mappingKeys[event.key];
         this.displayOperation();
       }
     }
@@ -170,7 +172,7 @@ let expression = {
   },
 
   displayErrorInOperation() {
-    if (this.leftNumber === "Error" || this.rightNumber === "Error") {
+    if (this.leftNumber === "Error" || isNaN(this.leftNumber)) {
       this.resetExpression();
       this.changeToNoneOperatorDisplay();
       this.displayError();
