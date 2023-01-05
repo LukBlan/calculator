@@ -79,7 +79,7 @@ function addEventToDotButton() {
 }
 
 function addEventToKeyPressed() {
-  window.addEventListener("keyup", (event) => {
+  window.addEventListener("keydown", (event) => {
     let mappedKey = mappingKeys[event.key];
     let keyType = (mappedKey !== undefined)? mappedKey : "other";
     functions[keyType](event);
