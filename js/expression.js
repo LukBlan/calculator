@@ -1,3 +1,9 @@
+const calculator = (() => {
+  const add = (a,b) => Number(a) + Number(b);
+  const subtract = (a,b) => Number(a) - Number(b);
+  return {add, subtract}
+})()
+
 let expression = {
   leftNumber: "0",
   operator: null,
@@ -77,9 +83,9 @@ let expression = {
   computeResult() {
     let result = this.leftNumber;
     if (this.operator === "+") {
-      result = Number(this.leftNumber) + Number(this.rightNumber);
+      result = calculator.add(this.leftNumber, this.rightNumber);
     } else if (this.operator === "-") {
-      result = Number(this.leftNumber) - Number(this.rightNumber);
+      result = calculator.subtract(this.leftNumber, this.rightNumber);
     } else if (this.operator === "x") {
       result = Number(this.leftNumber) * Number(this.rightNumber);
     } else if (this.operator === "/") {
