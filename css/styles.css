@@ -16,29 +16,30 @@ html {
 
 body {
   background-color: #333333;
-
+  padding: 22px;
   flex-direction: column;
   box-shadow: 3px 4px 11px 3px black;
   border: 2px black solid;
   border-radius: 25px;
-  padding: 15px;
   gap: 20px;
 }
 
 .calculator-buttons {
-  gap: 10px;
-  padding: 10px;
+  gap: 17px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
 }
 
 #display {
-  background-color: #77a87f;
-  border: solid black 2px;
+  background-color: rgb(119, 168, 127);
+  border: 2px solid black;
+  display: grid;
+  gap: 30px;
   margin: 10px auto;
   border-radius: 20px;
   text-align: right;
+  padding: 12px 3px;
 }
 
 #display p {
@@ -47,6 +48,7 @@ body {
 }
 
 #clear-button, #delete-button {
+  margin: 15px 0;
   background-color: black;
   flex-grow: 1;
   border-color: black;
@@ -72,12 +74,12 @@ button {
   background-color: #706f6f;
   color: white;
   border: none;
-  font-size: 30px;
+  font-size: 39px;
   width: 67px;
-  height: 56px;
-  box-shadow: 0 0 8px black;
+  height: 45px;
+  box-shadow: 0 0 3px black;
   cursor: pointer;
-  line-height: 32px;
+  line-height: 45px;
 }
 
 .active {
