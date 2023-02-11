@@ -1,5 +1,5 @@
 let functions = {
-  "-": function (event) {
+  "minus": function (event) {
     expression.addMinusSign(event);
     expression.displayNumber();
   },
@@ -9,12 +9,12 @@ let functions = {
     expression.displayNumber();
   },
 
-  ".": function (event) {
+  "dot": function (event) {
     expression.addDotToNumber(event);
     expression.displayNumber();
   },
 
-  "=": function () {
+  "equals": function () {
     if(!expression.currenNumberIsAnSpecialCharacter()) {
       expression.completed = true;
       expression.chainedOperator = null;

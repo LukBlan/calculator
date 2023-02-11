@@ -31,7 +31,7 @@ body {
   grid-template-rows: 1fr 1fr 1fr 1fr;
 }
 
-#display {
+.calculator-display {
   background-color: rgb(119, 168, 127);
   border: 2px solid black;
   display: grid;
@@ -47,7 +47,7 @@ body {
   word-break: break-all;
 }
 
-#clear-button, #delete-button {
+.clear-button, .delete-button {
   margin: 15px 0;
   background-color: black;
   flex-grow: 1;
@@ -56,7 +56,8 @@ body {
   font-size: 20px;
 }
 
-#operation-display {
+.current-operation-display
+{
   font-size: 14px;
 }
 

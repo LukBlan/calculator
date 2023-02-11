@@ -5,17 +5,19 @@
     <title>Calculator</title>
     <link rel="stylesheet" href="./css/styles.css">
     <script src="./js/pub-sub.js" defer></script>
+    <script src="./js/calculator-buttons.js" defer></script>
+    <script src="./js/key-mapper.js" defer></script>
   </head>
 
   <body>
-    <div id="display">
-      <p id="operation-display">None</p>
-      <p id="number-display">0</p>
+    <div class="calculator-display">
+      <p class="current-operation-display">None</p>
+      <p class="current-number-display">0</p>
     </div>
 
     <div class="row">
-      <button id="clear-button">Clear</button>
-      <button id="delete-button">Delete</button>
+      <button class="clear-button">Clear</button>
+      <button class="delete-button">Delete</button>
     </div>
 
     <div class="calculator-buttons">
