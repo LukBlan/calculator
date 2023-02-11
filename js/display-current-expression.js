@@ -1,20 +1,49 @@
 (function displayCurrentExpression() {
   // Cache DOM
   const currentOperationDisplay = document.querySelector(".current-operation-display");
-  let currentNumber = "";
+  let leftNumber = "0";
+  let rightNumber = "";
+  let currentOperator = null;
+  let expressionFinished = false;
 
   // Subscribe Event
-  pubSub.subscribe("displayExpression", displayExpression);
   pubSub.subscribe("resetExpression", resetExpression);
+  pubSub.subscribe("addOperator", addOperator)
+  pubSub.subscribe("setNewNumber", setNumber)
+  pubSub.subscribe("displayResult", displayResult);
 
-  function resetExpression() {
-    currentNumber = "";
+  function displayResult() {
+    const result = computeResultObject.getResult(leftNumber, currentOperator, rightNumber);
+    pubSub.emit("newResult", result);
+    expressionFinished = true;
     render();
   }
 
-  function displayExpression(number) {
-    currentNumber = number;
+  function addOperator(operatorSign) {
+    if (currentOperator === null) {
+      currentOperator = operatorSign;
+    }
     render();
+    pubSub.emit("newResult", "0");
+    rightNumber = "0";
+  }
+
+  function resetExpression() {
+    leftNumber = "";
+    rightNumber = "";
+    currentOperator = null;
+    expressionFinished = false;
+    render();
+    pubSub.emit("newResult", "0");
+    leftNumber = "0";
+  }
+
+  function setNumber(number) {
+    if (currentOperator === null) {
+      leftNumber = number;
+    } else {
+      rightNumber = number;
+    }
   }
 
   function render() {
@@ -22,10 +51,20 @@
   }
 
   function getExpression() {
-    let expression = currentNumber;
-    if (currentNumber !== "") {
+    let expression = leftNumber;
+
+    if (currentOperator !== null) {
+      expression += ` ${currentOperator}`
+    }
+
+    if (rightNumber !== "") {
+      expression += ` ${rightNumber}`
+    }
+
+    if (expressionFinished) {
       expression += " =";
     }
+
     return expression;
   }
 })()

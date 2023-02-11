@@ -9,12 +9,23 @@
   pubSub.subscribe("deleteLastNumber", deleteLastNumber);
   pubSub.subscribe("clearDisplay", clearDisplay);
   pubSub.subscribe("addDot", addDot);
-  pubSub.subscribe("displayResult", displayResult);
+  pubSub.subscribe("computeMinusOperator", computeMinusOperator);
+  pubSub.subscribe("newResult", displayResult);
 
-  function displayResult() {
-    pubSub.emit("displayExpression", currentNumber);
+  function displayResult(result) {
+    currentNumber = result;
     newNumberEntry = true;
     render();
+  }
+
+  function computeMinusOperator(minusSign) {
+    if (currentNumber === "0" || newNumberEntry) {
+      currentNumber = minusSign;
+      newNumberEntry = false;
+      render();
+    } else {
+      pubSub.emit("addOperator", minusSign);
+    }
   }
 
   function addDot() {
@@ -38,6 +49,7 @@
   function displayNewNumber(newNumber) {
     currentNumber = (currentNumber === "0" || newNumberEntry)? newNumber: currentNumber + newNumber;
     newNumberEntry = false;
+    pubSub.emit("setNewNumber", currentNumber);
     render();
   }
 
