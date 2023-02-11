@@ -18,15 +18,18 @@
     "Enter": {key: "=", keyFunction: "equals"},
     "=": {key: "=", keyFunction: "equals"},
     ".": {key: ".", keyFunction: "dot"},
-    "Backspace": {key: "Delete", keyFunction: "Delete"},
-    "Delete": {key: "Delete", keyFunction: "Delete"},
-    " ": {key: "Clear", keyFunction: "Clear"},
-    "Clear": {key: "Clear", keyFunction: "Clear"},
+    "Backspace": {key: "Delete", keyFunction: "delete"},
+    "Delete": {key: "Delete", keyFunction: "delete"},
+    " ": {key: "Clear", keyFunction: "clear"},
+    "Clear": {key: "Clear", keyFunction: "clear"},
   }
 
   pubSub.subscribe("keyPressed", mapKey)
 
   function mapKey(key) {
-    alert(mapper[key].key)
+    const keyMapped = mapper[key];
+    if (keyMapped !== undefined) {
+      pubSub.emit("applyKeyFunction", keyMapped)
+    }
   }
 })()
