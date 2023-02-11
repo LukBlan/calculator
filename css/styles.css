@@ -1,3 +1,7 @@
+/* ===============
+    Global Styles
+   =============== */
+
 *, *::after, *::before {
   margin: 0;
   padding: 0;
@@ -24,12 +28,9 @@ body {
   gap: 20px;
 }
 
-.calculator-buttons {
-  gap: 17px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
-}
+/* ========
+    Layout
+   ======== */
 
 .calculator-display {
   background-color: rgb(119, 168, 127);
@@ -42,27 +43,16 @@ body {
   padding: 12px 3px;
 }
 
-#display p {
-  padding-right: 5px;
-  word-break: break-all;
+.buttons-section {
+  gap: 17px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
 }
 
-.clear-button, .delete-button {
-  margin: 15px 0;
-  background-color: black;
-  flex-grow: 1;
-  border-color: black;
-  color: white;
-  font-size: 20px;
-}
-
-.current-operation-display
-{
-  font-size: 14px;
-}
-
-#equal-button {
-  background-color: orangered;
+.current-operation-display {
+  font-size: 1rem;
+  min-height: 1.1rem;
 }
 
 .row {
@@ -70,6 +60,17 @@ body {
   display: flex;
   gap: 10px;
 }
+
+.orange-background {
+  background-color: orangered;
+}
+
+/* ============
+    Components
+   ============ */
+    /* ---------
+        Buttons
+      ---------- */
 
 button {
   background-color: #706f6f;
@@ -81,6 +82,15 @@ button {
   box-shadow: 0 0 3px black;
   cursor: pointer;
   line-height: 45px;
+}
+
+.clear-button, .delete-button {
+  margin: 15px 0;
+  background-color: black;
+  flex-grow: 1;
+  border-color: black;
+  color: white;
+  font-size: 20px;
 }
 
 .active {
