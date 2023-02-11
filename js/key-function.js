@@ -12,6 +12,7 @@
     },
 
     "equals": function () {
+      pubSub.emit("displayResult", null);
     },
 
     "delete": function () {

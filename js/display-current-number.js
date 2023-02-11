@@ -1,13 +1,21 @@
-(function calculatorDisplay() {
+(function displayCurrenNumber() {
   // Cache DOM
   const currentNumberDisplay = document.querySelector(".current-number-display");
   let currentNumber = "0"
+  let newNumberEntry = false;
 
   // Subscribe Event
   pubSub.subscribe("newNumber", displayNewNumber);
   pubSub.subscribe("deleteLastNumber", deleteLastNumber);
   pubSub.subscribe("clearDisplay", clearDisplay);
   pubSub.subscribe("addDot", addDot);
+  pubSub.subscribe("displayResult", displayResult);
+
+  function displayResult() {
+    pubSub.emit("displayExpression", currentNumber);
+    newNumberEntry = true;
+    render();
+  }
 
   function addDot() {
     if (currentNumber.indexOf(".") === -1) {
@@ -18,6 +26,7 @@
 
   function clearDisplay() {
     currentNumber = "0";
+    pubSub.emit("resetExpression", null);
     render();
   }
 
@@ -27,7 +36,8 @@
   }
 
   function displayNewNumber(newNumber) {
-    currentNumber = (currentNumber === "0")? newNumber: currentNumber + newNumber;
+    currentNumber = (currentNumber === "0" || newNumberEntry)? newNumber: currentNumber + newNumber;
+    newNumberEntry = false;
     render();
   }
 
