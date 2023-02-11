@@ -3,20 +3,23 @@
     "minus": function () {
     },
 
-    "number": function (key) {
-      alert(key)
+    "number": function (number) {
+      pubSub.emit("newNumber", number);
     },
 
     "dot": function () {
+      pubSub.emit("addDot", null);
     },
 
     "equals": function () {
     },
 
     "delete": function () {
+      pubSub.emit("deleteLastNumber", null);
     },
 
     "clear": function () {
+      pubSub.emit("clearDisplay", null);
     },
 
     "operation": function () {

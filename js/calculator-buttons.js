@@ -1,10 +1,7 @@
 (function calculatorButtons() {
-  // Cache DOM
-  const calculator = document.body;
-
   // Bind Event
-  calculator.addEventListener("click", triggerButtonOnClick);
-  addEventListener("keydown", triggerButtonOnKeyPressed);
+  document.body.addEventListener("click", triggerButtonOnClick);
+  window.addEventListener("keydown", triggerButtonOnKeyPressed);
 
   function triggerButtonOnClick(event) {
     if (event.target.nodeName === "BUTTON") {
