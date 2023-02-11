@@ -22,7 +22,7 @@
   function addOperator(operatorSign) {
     if (currentOperator === null) {
       currentOperator = operatorSign;
-      pubSub.emit("newResult", "0");
+      pubSub.emit("newResult", (leftNumber === "-")? "-": "0");
     } else {
       leftNumber = computeResultObject.getResult(leftNumber, currentOperator, rightNumber);
       currentOperator = operatorSign;
@@ -31,7 +31,6 @@
       rightNumber = "";
     }
     render();
-    rightNumber = "0";
   }
 
   function resetExpression() {
