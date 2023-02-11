@@ -22,9 +22,15 @@
   function addOperator(operatorSign) {
     if (currentOperator === null) {
       currentOperator = operatorSign;
+      pubSub.emit("newResult", "0");
+    } else {
+      leftNumber = computeResultObject.getResult(leftNumber, currentOperator, rightNumber);
+      currentOperator = operatorSign;
+      expressionFinished = false;
+      pubSub.emit("newResult", (rightNumber === "-")? "-": "0");
+      rightNumber = "";
     }
     render();
-    pubSub.emit("newResult", "0");
     rightNumber = "0";
   }
 

@@ -24,7 +24,8 @@
       pubSub.emit("clearDisplay", null);
     },
 
-    "operation": function () {
+    "operator": function (operatorSign) {
+      pubSub.emit("addOperator", operatorSign);
     },
 
   }

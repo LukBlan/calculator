@@ -4,19 +4,27 @@ const computeResultObject = (function() {
       return leftNumber - rightNumber;
     },
 
-    "null": function (leftNumber) {
-      return leftNumber;
-    }
+    "+": function (leftNumber, rightNumber) {
+      return leftNumber + rightNumber;
+    },
+
+    "/": function (leftNumber, rightNumber) {
+      return leftNumber / rightNumber
+    },
+
+    "x": function (leftNumber, rightNumber) {
+      return leftNumber * rightNumber;
+    },
   }
 
   function getResult(leftNumber, operator, rightNumber) {
     let result;
     if (operator !== null) {
-      result = operation[operator](leftNumber, rightNumber);
+      result = operation[operator](Number(leftNumber), Number(rightNumber));
     } else {
       result = leftNumber
     }
-    return result;
+    return result.toString();
   }
 
   return {getResult}

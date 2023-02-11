@@ -22,6 +22,7 @@
     if (currentNumber === "0" || newNumberEntry) {
       currentNumber = minusSign;
       newNumberEntry = false;
+      pubSub.emit("setNewNumber", currentNumber);
       render();
     } else {
       pubSub.emit("addOperator", minusSign);
