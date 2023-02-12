@@ -1,7 +1,7 @@
 (function keyFunctions() {
   let functions = {
     "minus": function (minusSign) {
-      pubSub.emit("computeMinusOperator", minusSign);
+      pubSub.emit("addSubtractOperator", minusSign);
     },
 
     "number": function (number) {
