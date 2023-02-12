@@ -45,6 +45,11 @@ body {
   padding: 18px 3px;
 }
 
+.current-operation-display {
+  font-size: 0.7rem;
+  min-height: 2.1rem;
+}
+
 .calculator-display > p {
   padding-right: 5px;
 }
@@ -54,11 +59,6 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
-}
-
-.current-operation-display {
-  font-size: 1rem;
-  min-height: 2.1rem;
 }
 
 .row {

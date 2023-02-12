@@ -33,6 +33,10 @@
   pubSub.subscribe("applyKeyFunction", applyKeyFunction);
 
   function applyKeyFunction(keyMapped) {
-    functions[keyMapped.keyFunction](keyMapped.key)
+    try {
+      functions[keyMapped.keyFunction](keyMapped.key)
+    } catch (e) {
+      pubSub.emit("errorDetected", null)
+    }
   }
 })()

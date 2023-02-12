@@ -17,6 +17,18 @@
   pubSub.subscribe("equalPressed", displayEqualResult);
   pubSub.subscribe("addOperator", addOperator);
   pubSub.subscribe("addSubtractOperator", addSubtractOperator);
+  pubSub.subscribe("errorDetected", displayError);
+
+  function displayError() {
+    currenExpression.leftNumber = "";
+    currenExpression.rightNumber = "";
+    currenExpression.currentOperator = null;
+    currenExpression.finished = false;
+    currenExpression.newInput = false;
+    currenExpression.disableOperators = true;
+    emitNewExpression();
+    currenExpression.leftNumber = "0";
+  }
 
   function addSubtractOperator(subtractOperator) {
     if (currenExpression.currentValue() === "0") {
@@ -37,8 +49,8 @@
         currenExpression.rightNumber = "";
       }
       currenExpression.finished = false;
-      emitNewExpression();
       emitNewNumber("0");
+      emitNewExpression();
       currenExpression.rightNumber = "0";
       currenExpression.currentOperator = operatorSign;
       currenExpression.disableOperators = false;
@@ -49,8 +61,8 @@
     if (!currenExpression.disableOperators) {
       let result = computeResultObject.getResult(currenExpression)
       currenExpression.finished = true;
-      emitNewExpression();
       emitNewNumber(result);
+      emitNewExpression();
       currenExpression.currentOperator = null;
       currenExpression.finished = true;
       currenExpression.leftNumber = result;

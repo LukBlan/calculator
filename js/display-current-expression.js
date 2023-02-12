@@ -10,14 +10,17 @@
   }
 
   function getExpression(currentExpression) {
-    let expression = currentExpression.leftNumber;
+    let expression = (currentExpression.leftNumber.length > 21)?
+      Number(currentExpression.leftNumber).toExponential().toString() : currentExpression.leftNumber;
 
     if (currentExpression.currentOperator !== null) {
       expression += ` ${currentExpression.currentOperator}`
     }
 
     if (currentExpression.rightNumber !== "") {
-      expression += ` ${currentExpression.rightNumber}`
+      let rightNumber = (currentExpression.rightNumber.length > 21)?
+        Number(currentExpression.rightNumber).toExponential().toString() : currentExpression.rightNumber;
+      expression += ` ${rightNumber}`
     }
 
     if (currentExpression.finished) {

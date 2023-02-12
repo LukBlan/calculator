@@ -11,7 +11,7 @@ const computeResultObject = (function() {
     "/": function (leftNumber, rightNumber) {
       let result;
       if (rightNumber === 0) {
-        result = "Error";
+        throw new Error('You Can Divide by 0');
       } else {
         result = leftNumber / rightNumber;
       }
