@@ -25,12 +25,21 @@
   }
 
   pubSub.subscribe("keyPressed", mapKey)
+  pubSub.subscribe("keyDown", emitApplyActiveToButton)
 
   function mapKey(key) {
     const keyMapped = mapper[key];
     if (keyMapped !== undefined) {
+
       pubSub.emit("applyKeyFunction", keyMapped)
       pubSub.emit("applyEffect", keyMapped.key);
+    }
+  }
+
+  function emitApplyActiveToButton(key) {
+    const keyMapped = mapper[key];
+    if (keyMapped !== undefined) {
+      pubSub.emit("addActive", keyMapped.key);
     }
   }
 })()
