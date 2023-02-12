@@ -9,8 +9,8 @@
 }
 
 html {
+  background-color: white;
   display: flex;
-  background-color: antiquewhite;
   user-select: none;
   height: 100%;
   padding: 10% 20%;
