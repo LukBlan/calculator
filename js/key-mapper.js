@@ -30,7 +30,7 @@
     const keyMapped = mapper[key];
     if (keyMapped !== undefined) {
       pubSub.emit("applyKeyFunction", keyMapped)
-      pubSub.emit("applyEffect", key);
+      pubSub.emit("applyEffect", keyMapped.key);
     }
   }
 })()

@@ -9,7 +9,13 @@ const computeResultObject = (function() {
     },
 
     "/": function (leftNumber, rightNumber) {
-      return leftNumber / rightNumber
+      let result;
+      if (rightNumber === 0) {
+        result = "Error";
+      } else {
+        result = leftNumber / rightNumber;
+      }
+      return result;
     },
 
     "x": function (leftNumber, rightNumber) {
@@ -17,13 +23,18 @@ const computeResultObject = (function() {
     },
   }
 
-  function getResult(leftNumber, operator, rightNumber) {
+  function getResult(currenExpression) {
+    const operator = currenExpression.currentOperator;
+    const leftNumber = currenExpression.leftNumber;
+    const rightNumber = currenExpression.rightNumber;
     let result;
+
     if (operator !== null) {
       result = operation[operator](Number(leftNumber), Number(rightNumber));
     } else {
       result = leftNumber
     }
+
     return result.toString();
   }
 

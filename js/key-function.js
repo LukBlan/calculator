@@ -5,15 +5,15 @@
     },
 
     "number": function (number) {
-      pubSub.emit("newNumber", number);
+      pubSub.emit("addNewNumber", number);
     },
 
     "dot": function () {
-      pubSub.emit("addDot", null);
+      pubSub.emit("addDotToNumber", null);
     },
 
     "equals": function () {
-      pubSub.emit("displayResult", null);
+      pubSub.emit("equalPressed", null);
     },
 
     "delete": function () {
@@ -21,7 +21,7 @@
     },
 
     "clear": function () {
-      pubSub.emit("clearDisplay", null);
+      pubSub.emit("cleanExpression", null);
     },
 
     "operator": function (operatorSign) {
