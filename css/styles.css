@@ -76,8 +76,8 @@ button {
   height: 45px;
   box-shadow: 0 0 1px black;
   cursor: pointer;
-  line-height: 45px;
-  border: outset 3px white;
+  line-height: 40px;
+  border: outset 4px white;
 }
 
 .clear-button, .delete-button {
