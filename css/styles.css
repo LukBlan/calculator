@@ -26,7 +26,7 @@ html {
   background-color: rgb(215,215,215);
   padding: 25px;
   display: grid;
-  box-shadow: 3px 4px 8px 1px black;
+  box-shadow: 3px 4px 2px 1px rgba(0,0,0,0.75);
   border-radius: 15px;
   gap: 25px;
 }
@@ -59,6 +59,11 @@ html {
 
 .orange-background {
   background-color: orangered;
+  box-shadow: 0 6px 1px rgba(255, 45, 0, 0.9);
+}
+
+.orange-background.active {
+  box-shadow: 0 3px 1px rgba(255, 45, 0, 0.9);
 }
 
 /* ============
@@ -69,15 +74,16 @@ html {
       ---------- */
 
 button {
+  position: relative;
   background-color: #706f6f;
   color: white;
   font-size: 39px;
   width: 67px;
   height: 45px;
-  box-shadow: 0 0 1px black;
+  box-shadow: 0 6px 1px rgba(0,0,0,0.75);
   cursor: pointer;
   line-height: 40px;
-  border: outset 4px white;
+  border: 1px solid rgba(0,0,0,0.6);
 }
 
 .clear-button, .delete-button {
@@ -85,12 +91,9 @@ button {
   flex-grow: 1;
   color: white;
   font-size: 20px;
-  border: 3px outset white;
 }
 
 .active {
-  transition: 0.1s;
-  transform: scale(0.9);
-  border: 3px inset white;
-  box-shadow: none;
+  top: 2px;
+  box-shadow: 0 3px 1px rgba(0,0,0,0.8);
 }
